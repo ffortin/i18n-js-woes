@@ -1,4 +1,4 @@
-//= depend_on_config_tree ./locales
+//= depend_on_config_tree locales
 
 //= require i18n/shims
 //= require i18n
