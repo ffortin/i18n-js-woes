@@ -4,6 +4,7 @@ require "fileutils"
 module I18n
   module JS
     require "i18n/js/dependencies"
+    require "i18n/js/sprockets_preprocessor"
     if JS::Dependencies.rails?
       require "i18n/js/middleware"
       require "i18n/js/engine"
