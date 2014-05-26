@@ -13,7 +13,6 @@ module I18n
 
               source
             end
-          rescue TypeError # I don't think there is a more specific error to rescue
             # Could be raised by `Sprockets::Index`/`Sprockets::CachedEnvironment`
             # when doing `register_preprocessor` (which calls `expire_cache!` somehow)
             #
