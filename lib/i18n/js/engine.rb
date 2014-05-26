@@ -6,7 +6,7 @@ module I18n
       initializer :after => "sprockets.environment" do
         ActiveSupport.on_load(:after_initialize, :yield => true) do
           next unless JS::Dependencies.using_asset_pipeline?
-          #next unless Rails.configuration.assets.compile
+          next unless Rails.configuration.assets.compile
 
           begin
             Rails.application.assets.register_preprocessor "application/javascript", :"i18n-js_dependencies" do |context, source|
