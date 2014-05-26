@@ -5,7 +5,7 @@ class Sprockets::DirectiveProcessor
   end
 
   def process_depend_on_config_tree_directive(config_path)
-    Dir[File.expand_path(config_path, "#{Rails.root}/config")].each do |f|
+    Dir[File.expand_path("#{config_path}/**/*", "#{Rails.root}/config")].each do |f|
       context.depend_on(f)
     end
   end
