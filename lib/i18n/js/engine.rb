@@ -3,23 +3,9 @@ require "i18n/js"
 module I18n
   module JS
     class Engine < ::Rails::Engine
-      initializer :after => "sprockets.environment" do
-        ActiveSupport.on_load(:after_initialize, :yield => true) do
-          begin
-            Rails.application.assets.register_preprocessor "application/javascript", :"i18n-js_dependencies" do |context, source|
-              if context.logical_path == "i18n/filtered"
-                ::I18n.load_path.each {|path| context.depend_on(File.expand_path(path))}
-              end
-
-              source
-            end
-          rescue TypeError # I don't think there is a more specific error to rescue
-            # Could be raised by `Sprockets::Index`/`Sprockets::CachedEnvironment`
-            # when doing `register_preprocessor` (which calls `expire_cache!` somehow)
-            #
-            # In that case it is immutable, we don't need to do anything
-          end
-        end
+      initializer "i18n-js.asset_dependencies", :after => "sprockets.environment",
+                                                :before => "i18n-js.initialize" do
+        Rails.application.assets.register_preprocessor "application/javascript", Preprocessor
       end
     end
   end
