@@ -17,7 +17,7 @@ module I18n
     # The configuration file. This defaults to the `config/i18n-js.yml` file.
     #
     def self.config_file
-      @config_file ||= "config/i18n-js.yml"
+      @config_file ||= "#{Rails.root}/config/i18n-js.yml"
     end
 
     # Export translations to JavaScript, considering settings
